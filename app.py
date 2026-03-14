@@ -35,7 +35,7 @@ if not st.session_state.app_loaded:
         progress_bar.progress(i + 1)
         
     st.session_state.app_loaded = True
-    st.rerun()
+    st.experimental_rerun()
 
 # --- NAVIGATION STATE ---
 if "page" not in st.session_state:
