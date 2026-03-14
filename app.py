@@ -23,7 +23,7 @@ if not st.session_state.app_loaded:
     with open("index.html", "r", encoding="utf-8") as f:
         full_html = f.read()
     # Extract loading section (everything before HEADER_START)
-    loading_html = full_html.split("<!--HEADER_START-->")[0]
+    loading_html = full_html.split("")[0]
     import streamlit.components.v1 as components
     components.html(loading_html, height=1000, scrolling=False)
     
@@ -35,7 +35,7 @@ if not st.session_state.app_loaded:
         progress_bar.progress(i + 1)
         
     st.session_state.app_loaded = True
-    st.experimental_rerun()
+    st.rerun()
 
 # --- NAVIGATION STATE ---
 if "page" not in st.session_state:
@@ -55,10 +55,10 @@ def load_assets():
     with open("index.html", "r", encoding="utf-8") as f:
         full_html = f.read()
     # Extract header section between markers
-    header_start = full_html.find("<!--HEADER_START-->")
-    header_end = full_html.find("<!--HEADER_END-->")
+    header_start = full_html.find("")
+    header_end = full_html.find("")
     if header_start != -1 and header_end != -1:
-        html = full_html[header_start + len("<!--HEADER_START-->"):header_end].strip()
+        html = full_html[header_start + len(""):header_end].strip()
     else:
         html = ""
     
@@ -89,7 +89,7 @@ with st.sidebar:
     
     if page != st.session_state.page:
         st.session_state.page = page
-        st.experimental_rerun()
+        st.rerun()
     
     st.markdown("---")
     st.markdown("### 📊 Platform Metrics")
