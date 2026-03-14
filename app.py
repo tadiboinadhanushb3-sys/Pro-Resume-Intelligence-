@@ -89,7 +89,7 @@ with st.sidebar:
     
     if page != st.session_state.page:
         st.session_state.page = page
-        st.rerun()
+        st.experimental_rerun()
     
     st.markdown("---")
     st.markdown("### 📊 Platform Metrics")
